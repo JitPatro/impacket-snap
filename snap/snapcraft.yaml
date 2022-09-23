@@ -1,1 +1,246 @@
+name: impacket
+base: core20
+adopt-info: impacket
+summary: Impacket is a collection of Python classes for working with network protocols.
+description: |
+  Impacket is a collection of Python classes for working with network protocols. Impacket is focused on providing low-level programmatic access to the packets and for some protocols (e.g. SMB1-3 and MSRPC) the protocol implementation itself. Packets can be constructed from scratch, as well as parsed from raw data, and the object-oriented API makes it simple to work with deep hierarchies of protocols. The library provides a set of tools as examples of what can be done within the context of this library.
 
+environment:
+  LC_ALL: C.UTF-8
+  LANG: C.UTF-8
+
+grade: stable
+confinement: strict
+compression: lzo
+
+
+parts:
+  impacket:
+    plugin: python
+    python-packages:
+      - git+https://github.com/SecureAuthCorp/impacket.git
+    build-packages:
+      - git
+
+    override-build: |
+      snapcraftctl build
+      cd $SNAPCRAFT_PART_INSTALL/bin/
+      snapcraftctl set-version $(./python3 ./atexec.py | head -n 1 | awk '{printf $2}' | cut -d+ -f1)
+
+apps:
+
+  addcomputer:
+    command: bin/addcomputer.py
+    plugs: [home, network]
+
+  atexec:
+    command: bin/atexec.py
+    plugs: [home, network]
+
+  dcomexec:
+    command: bin/dcomexec.py
+    plugs: [home, network]
+
+  dpapi:
+    command: bin/dpapi.py
+    plugs: [home, network]
+
+  esentutl:
+    command: bin/esentutl.py
+    plugs: [home, network]
+
+  exchanger:
+    command: bin/exchanger.py
+    plugs: [home, network]
+
+  findDelegation:
+    command: bin/findDelegation.py
+    plugs: [home, network]
+
+  GetADUsers:
+    command: bin/GetADUsers.py
+    plugs: [home, network]
+
+  GetArch:
+    command: bin/getArch.py
+    plugs: [home, network]
+
+  Get-GPPPassword:
+    command: bin/Get-GPPPassword.py
+    plugs: [home, network]
+
+  GetNPUsers:
+    command: bin/GetNPUsers.py
+    plugs: [home, network]
+
+  getPac:
+    command: bin/getPac.py
+    plugs: [home, network]
+
+  getST:
+    command: bin/getST.py
+    plugs: [home, network]
+
+  getTGT:
+    command: bin/getTGT.py
+    plugs: [home, network]
+
+  GetUserSPNs:
+    command: bin/GetUserSPNs.py
+    plugs: [home, network]
+
+  goldenPac:
+    command: bin/goldenPac.py
+    plugs: [home, network]
+
+  karmaSMB:
+    command: bin/karmaSMB.py
+    plugs: [home, network, network-bind]
+
+  keylistattack:
+    command: bin/keylistattack.py
+    plugs: [home, network]
+
+  kintercept:
+    command: bin/kintercept.py
+    plugs: [home, network]
+
+  ldapdomaindump:
+    command: bin/ldapdomaindump
+    plugs: [home, network]
+
+  ldd2bloodhound:
+    command: bin/ldd2bloodhound
+    plugs: [home, network]
+
+  ldd2pretty:
+    command: bin/ldd2pretty
+    plugs: [home, network]
+
+  lookupsid:
+    command: bin/lookupsid.py
+    plugs: [home, network]
+
+  machine-role:
+    command: bin/machine_role.py
+    plugs: [home, network]
+
+  mimikatz:
+    command: bin/mimikatz.py
+    plugs: [home, network]
+
+  mqtt-check:
+    command: bin/mqtt_check.py
+    plugs: [home, network]
+
+  mssqlclient:
+    plugs: [home, network]
+    command: bin/mssqlclient.py
+
+  mssqlinstance:
+    plugs: [home, network]
+    command: bin/mssqlinstance.py
+
+  netview:
+    plugs: [home, network]
+    command: bin/netview.py
+
+  nmapAnswerMachine:
+    plugs: [home, network]
+    command: bin/nmapAnswerMachine.py
+
+  ntfs-read:
+    plugs: [home, network]
+    command: bin/ntfs-read.py
+
+  ntlmrelayx:
+    plugs: [home, network, network-bind]
+    command: bin/ntlmrelayx.py
+
+  psexec:
+    plugs: [home, network]
+    command: bin/psexec.py
+
+  raiseChild:
+    plugs: [home, network]
+    command: bin/raiseChild.py
+
+  rbcd:
+    plugs: [home, network]
+    command: bin/rbcd.py
+
+  rdp-check:
+    plugs: [home, network]
+    command: bin/rdp_check.py
+
+  registry-read:
+    plugs: [home, network]
+    command: bin/registry-read.py
+
+  reg:
+    plugs: [home, network]
+    command: bin/reg.py
+
+  rpcdump:
+    plugs: [home, network]
+    command: bin/rpcdump.py
+
+  rpcmap:
+    plugs: [home, network]
+    command: bin/rpcmap.py
+
+  samrdump:
+    plugs: [home, network]
+    command: bin/samrdump.py
+
+  secretsdump:
+    plugs: [home, network]
+    command: bin/secretsdump.py
+
+  services:
+    plugs: [home, network]
+    command: bin/services.py
+
+  smbclient:
+    plugs: [home, network]
+    command: bin/smbclient.py
+
+  smbexec:
+    plugs: [home, network]
+    command: bin/smbexec.py
+
+  smbpasswd:
+    plugs: [home, network]
+    command: bin/smbpasswd.py
+
+  smbrelayx:
+    plugs: [home, network, network-bind]
+    command: bin/smbrelayx.py
+
+  smbserver:
+    plugs: [home, network, network-bind]
+    command: bin/smbserver.py
+
+  ticketConverter:
+    plugs: [home, network]
+    command: bin/ticketConverter.py
+
+  ticketer:
+    plugs: [home, network]
+    command: bin/ticketer.py
+
+  tstool:
+    plugs: [home, network]
+    command: bin/tstool.py
+
+  wmiexec:
+    plugs: [home, network]
+    command: bin/wmiexec.py
+
+  wmipersist:
+    plugs: [home, network]
+    command: bin/wmipersist.py
+
+  wmiquery:
+    plugs: [home, network]
+    command: bin/wmiquery.py
