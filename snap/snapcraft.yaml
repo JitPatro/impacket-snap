@@ -26,6 +26,8 @@ parts:
       - git+https://github.com/SecureAuthCorp/impacket.git
     build-packages:
       - git
+      - on armhf:
+        - libffi-dev
 
     override-build: |
       snapcraftctl build
