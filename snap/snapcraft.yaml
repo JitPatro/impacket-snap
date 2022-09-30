@@ -29,6 +29,12 @@ parts:
       snapcraftctl build
       cd $SNAPCRAFT_PART_INSTALL/bin/
       snapcraftctl set-version $(./python3 ./atexec.py | head -n 1 | awk '{printf $2}' | cut -d+ -f1)
+      
+    prime:
+      - -share/python-wheels
+      - -lib/python3.8/site-packages/pip*
+      - -lib/python3.8/site-packages/setuptools*
+
 
 apps:
 
