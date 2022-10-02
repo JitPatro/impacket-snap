@@ -16,6 +16,9 @@ compression: lzo
 architectures:
   - build-on: amd64
   - build-on: arm64
+  - build-on: armhf
+  - build-on: ppc64el
+  - build-on: s390x
 
 parts:
   impacket:
@@ -24,6 +27,13 @@ parts:
       - git+https://github.com/SecureAuthCorp/impacket.git
     build-packages:
       - git
+      - libxml2-dev
+      - libxslt1-dev
+      - libffi-dev
+      - libssl-dev
+      - libjpeg-dev
+      - rustc
+      - cargo
 
     override-build: |
       snapcraftctl build
