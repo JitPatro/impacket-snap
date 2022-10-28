@@ -207,6 +207,10 @@ apps:
   rpcmap:
     plugs: [home, network]
     command: bin/rpcmap.py
+    
+  sambaPipe:
+    plugs: [home, network]
+    command: bin/sambaPipe.py
 
   samrdump:
     plugs: [home, network]
@@ -239,6 +243,14 @@ apps:
   smbserver:
     plugs: [home, network, network-bind]
     command: bin/smbserver.py
+    
+  sniff:
+    plugs: [home, network, network-bind]
+    command: bin/sniff.py
+    
+  sniffer:
+    plugs: [home, network, network-bind]
+    command: bin/sniffer.py
 
   ticketConverter:
     plugs: [home, network]
