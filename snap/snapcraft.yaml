@@ -23,8 +23,7 @@ architectures:
 parts:
   impacket:
     plugin: python
-    python-packages:
-      - git+https://github.com/SecureAuthCorp/impacket.git
+    source: https://github.com/fortra/impacket.git
     build-packages:
       - git
       - libxml2-dev
