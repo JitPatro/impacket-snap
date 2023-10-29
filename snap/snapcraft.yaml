@@ -26,6 +26,7 @@ parts:
     source: https://github.com/fortra/impacket.git
     build-packages:
       - git
+      - pkg-config
       - libxml2-dev
       - libxslt1-dev
       - libffi-dev
