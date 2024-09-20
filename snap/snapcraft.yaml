@@ -1,5 +1,5 @@
 name: impacket
-base: core22
+base: core24
 adopt-info: impacket
 summary: Impacket is a collection of Python classes for working with network protocols.
 description: |
@@ -13,12 +13,24 @@ grade: stable
 confinement: strict
 #compression: lzo
 
-architectures:
-  - build-on: amd64
-  - build-on: arm64
-  - build-on: armhf
-  - build-on: ppc64el
-  - build-on: s390x
+#architectures:
+ # - build-on: amd64
+ # - build-on: arm64
+ # - build-on: armhf
+ # - build-on: ppc64el
+ # - build-on: s390x
+
+platforms:
+  amd64:
+    build-on: [amd64]
+  arm64:
+    build-on: [arm64]
+  armhf:
+    build-on: [armhf]
+  ppc64el:
+    build-on: [ppc64el]
+  s390x:
+    build-on: [s390x]
 
 parts:
   impacket:
@@ -164,9 +176,9 @@ apps:
     plugs: [home, network]
     command: bin/netview.py
 
-  nmapAnswerMachine:
-    plugs: [home, network]
-    command: bin/nmapAnswerMachine.py
+  #nmapAnswerMachine:
+    #plugs: [home, network]
+    #command: bin/nmapAnswerMachine.py
 
   ntfs-read:
     plugs: [home, network]
@@ -232,13 +244,13 @@ apps:
     plugs: [home, network]
     command: bin/smbexec.py
 
-  smbpasswd:
-    plugs: [home, network]
-    command: bin/smbpasswd.py
+  #smbpasswd:
+    #plugs: [home, network]
+    #command: bin/smbpasswd.py
 
-  smbrelayx:
-    plugs: [home, network, network-bind]
-    command: bin/smbrelayx.py
+  #smbrelayx:
+    #plugs: [home, network, network-bind]
+    #command: bin/smbrelayx.py
 
   smbserver:
     plugs: [home, network, network-bind]
